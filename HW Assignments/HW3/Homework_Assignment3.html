@@ -143,13 +143,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sentence_list <span class="op">=</span> sentence.split(<span class="st">" "</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> sentence_list:</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> word.lower() <span class="kw">not</span> <span class="kw">in</span> word_counts: <span class="co"># append word and # of occurances to word_counts dict if we haven't already added it</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> word.lower() <span class="kw">not</span> <span class="kw">in</span> word_counts: <span class="co"># append word and # of occurences to word_counts dict if we haven't already added it</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        word_counts[word.lower()] <span class="op">=</span> count_word(word.lower(), sentence)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>max_count <span class="op">=</span> <span class="bu">max</span>(word_counts, key<span class="op">=</span>word_counts.get) <span class="co"># get the word with the highest number of occurances</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The word with the maximum number of occurances is '</span><span class="sc">{}</span><span class="st">' and it occurs </span><span class="sc">{}</span><span class="st"> times."</span>.<span class="bu">format</span>(max_count, word_counts[max_count]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>max_count <span class="op">=</span> <span class="bu">max</span>(word_counts, key<span class="op">=</span>word_counts.get) <span class="co"># get the word with the highest number of occurences; we don't care which word we choose if multiple are tied, so no need to go any further</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The word with the maximum number of occurences is '</span><span class="sc">{}</span><span class="st">' and it occurs </span><span class="sc">{}</span><span class="st"> times."</span>.<span class="bu">format</span>(max_count, word_counts[max_count]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The word with the maximum number of occurances is 'sea' and it occurs 3 times.</code></pre>
+<pre><code>The word with the maximum number of occurences is 'sea' and it occurs 3 times.</code></pre>
 </div>
 </div>
 </section>
@@ -171,14 +171,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For one step, pick a random integer between 1 and 4 (or in any range of four numbers) using the <strong>randint</strong> function from the <strong>random</strong> library. Use the possible values of this integer as the keys for the possible directions. Update the x and y coordinates accordingly.</li>
 <li>You need to take the square root to calculate the <strong>Euclidean distance</strong> from the origin at the end. Use <strong>np.sqrt</strong>, the square root function of <strong>Numpy</strong>.</li>
 </ol>
-<div id="cce127e1-b86a-4708-bbfe-e3653061b063" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<div id="cce127e1-b86a-4708-bbfe-e3653061b063" class="cell" data-execution_count="89">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> randint</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> random_walk_generator(steps):</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    current_coords <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>] <span class="co"># use a list as we need mutability to update coordinates</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(steps):</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        direction <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">4</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        direction <span class="op">=</span> randint(<span class="dv">1</span>, <span class="dv">4</span>)</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> direction <span class="op">==</span> <span class="dv">1</span>: <span class="co"># go north</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            current_coords[<span class="dv">0</span>] <span class="op">+=</span> <span class="dv">1</span></span>
@@ -192,8 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.sqrt(current_coords[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> current_coords[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span>)) <span class="co"># calculate Euclidean distance from origin and convert from np float64 to python float</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>random_walk_generator(<span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
-<pre><code>15.231546211727817</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="89">
+<pre><code>17.029386365926403</code></pre>
 </div>
 </div>
 </section>
@@ -201,13 +201,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="b">b)</h3>
 <p>Like most experiments/simulations with randomness involved, more reliable output can be obtained by running the function for multiple trials. Call the <strong>random_walk_generator</strong> function 10,000 times with 500 steps each time. Store all outputs in a list called <strong>random_walk_distances</strong>. <strong>(5 points)</strong></p>
 <p>Afterwards, run the given code to print the average distance over all trials and to plot a histogram that shows how the distance is distributed over the 10,000 random walk trials. (You do not need to change anything in the given code.)</p>
-<div id="3096f3ab-dd5e-4d68-a947-66f6609f5ece" class="cell" data-execution_count="34">
+<div id="3096f3ab-dd5e-4d68-a947-66f6609f5ece" class="cell" data-execution_count="90">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>random_walk_distances <span class="op">=</span> []</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>):</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    random_walk_distances.append(random_walk_generator(<span class="dv">500</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="218dfbe6-c56a-414f-b588-cf30d40e15da" class="cell" data-execution_count="35">
+<div id="218dfbe6-c56a-414f-b588-cf30d40e15da" class="cell" data-execution_count="91">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Average distance for 500 steps over 10,000 trials:'</span>, np.mean(random_walk_distances))</span>
@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequency'</span>)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Average distance for 500 steps over 10,000 trials: 19.84396410850669</code></pre>
+<pre><code>Average distance for 500 steps over 10,000 trials: 19.677598558894054</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -259,11 +259,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="c" class="level3">
 <h3 class="anchored" data-anchor-id="c">c)</h3>
 <p>Use the list created in Part a to calculate and print the percentage of changes that are greater than $1000. <strong>(10 points)</strong></p>
-<div id="b04b8985-3200-4b15-bd56-b9e40c881271" class="cell" data-execution_count="47">
+<div id="b04b8985-3200-4b15-bd56-b9e40c881271" class="cell" data-execution_count="92">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>changes_greater_1000 <span class="op">=</span> [change <span class="cf">for</span> change <span class="kw">in</span> gdp_differences <span class="cf">if</span> change <span class="op">&gt;</span> <span class="dv">1000</span>] <span class="co"># generate a list of just the changes greater than $1000</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(changes_greater_1000)<span class="op">/</span><span class="bu">len</span>(gdp_differences))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>proportion_greater_1000 <span class="op">=</span> <span class="bu">len</span>(changes_greater_1000)<span class="op">/</span><span class="bu">len</span>(gdp_differences)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>proportion_greater_1000<span class="sc">:.2%}</span><span class="ss">"</span>) <span class="co"># print formatted as a % to two decimal places</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.5245901639344263</code></pre>
+<pre><code>52.46%</code></pre>
 </div>
 </div>
 </section>
