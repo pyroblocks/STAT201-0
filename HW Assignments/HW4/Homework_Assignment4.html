@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Homework Assignment 4 - Data Structures &amp; Object-Oriented Programming</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Homework_Assignment4_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Homework_Assignment4_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Homework_Assignment4_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Homework_Assignment4_files/libs/quarto-html/popper.min.js"></script>
+<script src="Homework_Assignment4_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Homework_Assignment4_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Homework_Assignment4_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Homework_Assignment4_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Homework_Assignment4_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Homework_Assignment4_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Homework_Assignment4_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Homework Assignment 4 - Data Structures &amp; Object-Oriented Programming</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="total-100-points" class="level3">
+<h3 class="anchored" data-anchor-id="total-100-points">Total: 100 points</h3>
+</section>
+<section id="ted-talks-45-points" class="level2">
+<h2 class="anchored" data-anchor-id="ted-talks-45-points">1) Ted Talks (45 points)</h2>
+<p>Run the code below to read the <strong>TED_Talks.json</strong> file you started exploring in the previous homework assignment. Remember that for the code to work properly, <strong>the json file should be in the same folder as this ipynb file</strong>.</p>
+<div id="72bb73d4-bf5e-425c-b64f-e3ed8018c1a4" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"TED_Talks.json"</span>, <span class="st">"r"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    TED_Talks_data<span class="op">=</span>json.load(<span class="bu">file</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="a" class="level3">
+<h3 class="anchored" data-anchor-id="a">a)</h3>
+<p><strong>Print</strong> the type of the TED_Talks_data.</p>
+<p>Then, find the <strong>headline</strong>, <strong>speaker</strong> and <strong>year_filmed</strong> of the talk with the highest number of <strong>views</strong>. <strong>Be careful with the datatypes!</strong> <strong>(15 points)</strong></p>
+<div id="897c5e65-cb81-463f-8783-413a033e863b" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(TED_Talks_data))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>views_dict <span class="op">=</span> {TED_Talks_data.index(x): <span class="bu">int</span>(x[<span class="st">'views'</span>]) <span class="cf">for</span> x <span class="kw">in</span> TED_Talks_data} <span class="co"># create a dictionary of list index: views for all talks in TED_Talks_data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>highest_views <span class="op">=</span> <span class="bu">max</span>(views_dict, key<span class="op">=</span>views_dict.get) <span class="co"># get the index of the talk in TED_Talks_data with the most views</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The talk with the most number of views is entitled "</span><span class="sc">{</span>TED_Talks_data[highest_views][<span class="st">"headline"</span>]<span class="sc">}</span><span class="ss">" and was given by </span><span class="sc">{</span>TED_Talks_data[highest_views][<span class="st">"speaker"</span>]<span class="sc">}</span><span class="ss"> in </span><span class="sc">{</span>TED_Talks_data[highest_views][<span class="st">"year_filmed"</span>]<span class="sc">}</span><span class="ss">. It has </span><span class="sc">{</span><span class="bu">int</span>(TED_Talks_data[highest_views][<span class="st">"views"</span>])<span class="sc">:,}</span><span class="ss"> views.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'list'&gt;
+The talk with the most number of views is entitled "Do schools kill creativity?" and was given by Ken Robinson in 2006. It has 47,924,020 views.</code></pre>
+</div>
+</div>
+</section>
+<section id="b" class="level3">
+<h3 class="anchored" data-anchor-id="b">b)</h3>
+<p>Find out if the majority of talks (more than 50%) have less <strong>views</strong> than the overall average. You need two basic statistical tools to answer this question. You can implement them yourself or import them from a library. <strong>(7.5 points)</strong></p>
+<div id="ba3e3b90-3368-4e00-a73e-151cfdcb7861" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>talk_views <span class="op">=</span> <span class="bu">list</span>(views_dict.values())</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>mean_views <span class="op">=</span> np.mean(talk_views)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>share_less_average <span class="op">=</span> <span class="bu">len</span>([i <span class="cf">for</span> i <span class="kw">in</span> talk_views <span class="cf">if</span> i <span class="op">&lt;</span> mean_views])<span class="op">/</span><span class="bu">len</span>(talk_views) <span class="co"># could also calculate this by seeing if the median is less than the mean, but this allows for less calculation in the next part</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> share_less_average <span class="op">&gt;</span> <span class="fl">0.5</span>:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'The majority of talks (</span><span class="sc">{</span>share_less_average<span class="sc">:.2%}</span><span class="ss">) have fewer views than the overall average.'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'A minority of talks (</span><span class="sc">{</span>share_less_average<span class="sc">:.2%}</span><span class="ss">) have fewer views than the overall average.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The majority of talks (74.94%) have fewer views than the overall average.</code></pre>
+</div>
+</div>
+</section>
+<section id="c" class="level3">
+<h3 class="anchored" data-anchor-id="c">c)</h3>
+<p>Find out if 25% or more of the talks have more <strong>views</strong> than the overall average. You can again implement the necessary statistical tools yourself or use a library. <strong>(7.5 points)</strong></p>
+<div id="d3c5f02d-7e4c-4951-bd3f-f23de0eb5a25" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>share_more_average <span class="op">=</span> <span class="dv">1</span><span class="op">-</span>share_less_average</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> share_more_average <span class="op">&gt;=</span> <span class="fl">0.25</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'More than 25% of talks (</span><span class="sc">{</span>share_more_average<span class="sc">:.2%}</span><span class="ss">) have more views than the overall average.'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'Less than 25% of talks (</span><span class="sc">{</span>share_more_average<span class="sc">:.2%}</span><span class="ss">) have more views than the overall average.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>More than 25% of talks (25.06%) have more views than the overall average.</code></pre>
+</div>
+</div>
+</section>
+<section id="d" class="level3">
+<h3 class="anchored" data-anchor-id="d">d)</h3>
+<p>Find the <strong>headline</strong> of the talk that received the highest number of <strong>Confusing</strong> votes. <strong>(15 points)</strong></p>
+<div id="e2e765b1-77d9-49f4-839d-8f54c7427403" class="cell" data-execution_count="49">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>confusing_dict <span class="op">=</span> {}</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the votes are stored under 'rates' for each talk, which itself contains several different ratings, each in a different order. So, we must iterate through each talk's 'rates' header and then go through each rating until we find the number of confusing votes</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index,talk <span class="kw">in</span> <span class="bu">enumerate</span>(TED_Talks_data): <span class="co"># enumerate with index so we can add it to confusing_dict later</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    talk_rates <span class="op">=</span> talk[<span class="st">'rates'</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> rating <span class="kw">in</span> talk_rates:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> rating[<span class="st">'name'</span>] <span class="op">==</span> <span class="st">'Confusing'</span>:</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            confusing_dict[index] <span class="op">=</span> <span class="bu">int</span>(rating[<span class="st">'count'</span>]) <span class="co"># if we're at the confusing rating, create a (TED_Talks_data index: Confusing rating count) pair and add this pair to confusing_dict</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>most_confusing <span class="op">=</span> <span class="bu">max</span>(confusing_dict, key<span class="op">=</span>confusing_dict.get) <span class="co"># get the index of the talk in TED_Talks_data with the most confusing ratings</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The talk with the most number of Confusing votes is entitled "</span><span class="sc">{</span>TED_Talks_data[most_confusing][<span class="st">"headline"</span>]<span class="sc">}</span><span class="ss">" and has </span><span class="sc">{</span>confusing_dict[most_confusing]<span class="sc">:,}</span><span class="ss"> Confusing votes.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The talk with the most number of Confusing votes is entitled "I believe we evolved from aquatic apes" and has 531 Confusing votes.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="object-oriented-programming-50-points" class="level2">
+<h2 class="anchored" data-anchor-id="object-oriented-programming-50-points">2) Object-Oriented Programming (50 points)</h2>
+<p>One way to manage the message data on a cell phone is to store all messages as <strong>a list of dictionaries</strong>. In the cell below, you can find a short real-life example of what a message inbox would look like in Python. Note that: - The inbox is a list. - Each message in the inbox is a dictionary. - Each dictionary has five key-value pairs that store the information about the message.</p>
+<div id="149509d3-0bea-4dea-a641-da3abeabcf29" class="cell" data-execution_count="64">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>inbox <span class="op">=</span> [{<span class="st">'has_been_viewed'</span>:<span class="va">False</span>, <span class="st">'from_number'</span>:<span class="dv">8769038451</span>, <span class="st">'time'</span>:<span class="st">'09:36'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-02'</span>,<span class="st">'text'</span>:<span class="st">'Hi, how about lunch at 11?'</span>},</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">False</span>, <span class="st">'from_number'</span>:<span class="dv">9579038373</span>, <span class="st">'time'</span>:<span class="st">'19:31'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-02'</span>, <span class="st">'text'</span>:<span class="st">'Your order has arrived'</span>},</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">8639568726</span>, <span class="st">'time'</span>:<span class="st">'10:32'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-03'</span>,<span class="st">'text'</span>:<span class="st">'Card not present on American Express acc ending 5434 Amount $45.43 Merch: TOMATEFRESHKITCHEN.COM if unrecognized call # on Card'</span>},</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">False</span>, <span class="st">'from_number'</span>:<span class="dv">4567653456</span>, <span class="st">'time'</span>:<span class="st">'11:55'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-03'</span>,<span class="st">'text'</span>:<span class="st">'Hi Emre, we are confirming your dentist appointment on Thursday next week.'</span>},</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">False</span>, <span class="st">'from_number'</span>:<span class="dv">5646786643</span>, <span class="st">'time'</span>:<span class="st">'18:53'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-04'</span>,<span class="st">'text'</span>:<span class="st">'Where is the party bro?'</span>},</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">False</span>, <span class="st">'from_number'</span>:<span class="dv">9845543492</span>, <span class="st">'time'</span>:<span class="st">'17:11'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-05'</span>,<span class="st">'text'</span>:<span class="st">'Free trial of ScanApp for 7 days for clear scanned documents, cancel anytime, $10.99 per month after 7 days'</span>},</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">8793450987</span>, <span class="st">'time'</span>:<span class="st">'13:20'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-06'</span>,<span class="st">'text'</span>:<span class="st">'Hey Emre, I have sent you my resume for feedback'</span>},</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">874556445</span>, <span class="st">'time'</span>:<span class="st">'07:52'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-07'</span>,<span class="st">'text'</span>:<span class="st">'Which route are we taking for the run today?'</span>},</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">998456435</span>, <span class="st">'time'</span>:<span class="st">'07:41'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-08'</span>,<span class="st">'text'</span>:<span class="st">'Reservation confirmed at the New York Plaza hotel.'</span>},</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">8769038451</span>, <span class="st">'time'</span>:<span class="st">'05:21'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-08'</span>,<span class="st">'text'</span>:<span class="st">'Lets catchup sometime, it has been so long!'</span>},</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">7739984533</span>, <span class="st">'time'</span>:<span class="st">'10:20'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-09'</span>,<span class="st">'text'</span>:<span class="st">'Do you want to be rich today? Do you want to be your own boss? Check out beyourownboss.com. Register today for just $5!!!'</span>},</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>         {<span class="st">'has_been_viewed'</span>:<span class="va">True</span>, <span class="st">'from_number'</span>:<span class="dv">3443498738</span>, <span class="st">'time'</span>:<span class="st">'08:12'</span>,<span class="st">'date'</span>:<span class="st">'2024-11-11'</span>,<span class="st">'text'</span>:<span class="st">'Want to lose weight? Get Dr. Oz magic pills @ozpills.com. Satisfaction guaranteed.'</span>}]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="a-1" class="level3">
+<h3 class="anchored" data-anchor-id="a-1">a)</h3>
+<p>Create a new class called <strong>Text_Manager</strong>. This class will be used to create objects that store and manage the messages in a cell phone.</p>
+<ul>
+<li>While creating an object, the class should take one input, which will be a list of dictionaries like the inbox given in the previous cell.</li>
+<li>The class should save its input as <strong>its only attribute</strong>. Call this attribute <strong>messages</strong>. Note that this attribute will store all the messages in the inbox.</li>
+<li>After the attribute, the class should have the following five methods:
+<ul>
+<li><strong>add_new_message</strong>: This method takes the information of a new message as <strong>four inputs</strong>: from_number, time_arrived, date_arrived, and text. It adds the new message as a new dictionary to the inbox. It sets the <strong>has_been_viewed</strong> status for the new message as <strong>False</strong>.</li>
+<li><strong>message_count</strong>: This method does not take any inputs and returns the number of all messages in the inbox.</li>
+<li><strong>get_unread_messages:</strong> This method does not take any inputs and returns the information of the unread messages in the inbox as the output. All the information except <strong>has_been_viewed</strong> should be returned for each unread message. Lastly, the <strong>has_been_viewed</strong> status of the returned messages should change from False to True.</li>
+<li><strong>delete_message:</strong> This method takes the index of a message as the only input and deletes the corresponding message in the inbox.</li>
+<li><strong>clear_inbox:</strong> This method takes no inputs and deletes all messages in the inbox.</li>
+</ul></li>
+</ul>
+<p><strong>(38 points)</strong></p>
+<div id="719bbfdf-cc09-4260-bb8f-d24473b19932" class="cell" data-execution_count="65">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Text_Manager:</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, dict_list):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.messages <span class="op">=</span> dict_list</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_new_message(<span class="va">self</span>, from_number, time_arrived, date_arrived, text):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.messages.append({<span class="st">'has_been_viewed'</span>: <span class="va">False</span>, <span class="st">'from_number'</span>: from_number, <span class="st">'time'</span>: time_arrived, <span class="st">'date'</span>: date_arrived, <span class="st">'text'</span>: text})</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> message_count(<span class="va">self</span>):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(<span class="bu">len</span>(<span class="va">self</span>.messages))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> get_unread_messages(<span class="va">self</span>):</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        messages_to_return <span class="op">=</span> []</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index, message <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.messages): <span class="co"># enumerate with index so that we can edit self.messages to mark the message as viewed</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> message[<span class="st">'has_been_viewed'</span>] <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                messages_to_return.append(<span class="ss">f'You have an unread message sent by </span><span class="sc">{</span>message[<span class="st">"from_number"</span>]<span class="sc">}</span><span class="ss"> on </span><span class="sc">{</span>message[<span class="st">"date"</span>]<span class="sc">}</span><span class="ss"> at </span><span class="sc">{</span>message[<span class="st">"time"</span>]<span class="sc">}</span><span class="ss">. It reads: </span><span class="sc">{</span>message[<span class="st">"text"</span>]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.messages[index][<span class="st">'has_been_viewed'</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span>(messages_to_return)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> delete_message(<span class="va">self</span>, message_index):</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.messages.pop(message_index)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> clear_inbox(<span class="va">self</span>): <span class="co"># could use delete_message to delete every message one-by-one, but the end result we want is an empty list, so we can just set self.messages to that to begin with</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.messages <span class="op">=</span> []</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="b-1" class="level3">
+<h3 class="anchored" data-anchor-id="b-1">b)</h3>
+<p>Create a Text Manager object using the class and the given list of dictionaries. <strong>(2 points)</strong></p>
+<div id="f4379381-8180-4634-b915-181de62d9d89" class="cell" data-execution_count="66">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>text_manager <span class="op">=</span> Text_Manager(inbox)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="c-1" class="level3">
+<h3 class="anchored" data-anchor-id="c-1">c)</h3>
+<p>Assume that the phone just got a new text with the information below. Add it to the inbox and display the last text in the inbox to check if the method is working. <strong>(2 points)</strong></p>
+<div id="bf5922a1-9522-47ae-a1c3-e1154d53829a" class="cell" data-execution_count="67">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>from_number<span class="op">=</span><span class="dv">8749373884</span><span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>time<span class="op">=</span><span class="st">'07:25'</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>date<span class="op">=</span><span class="st">'2024-11-30'</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>text<span class="op">=</span><span class="st">'Hey, I want my bike back.'</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>text_manager.add_new_message(from_number, time, date, text)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(text_manager.messages[<span class="op">-</span><span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'has_been_viewed': False, 'from_number': 8749373884, 'time': '07:25', 'date': '2024-11-30', 'text': 'Hey, I want my bike back.'}</code></pre>
+</div>
+</div>
+</section>
+<section id="d-1" class="level3">
+<h3 class="anchored" data-anchor-id="d-1">d)</h3>
+<p>Count all messages and count the unread messages in the inbox, <strong>using Text Manager methods only</strong>. (The only other tool you are allowed to use is the len function.) <strong>(3 points)</strong></p>
+<div id="f377809c-14ce-453f-9a89-5d61f7b770fa" class="cell" data-execution_count="68">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The number of total messages in the inbox is </span><span class="sc">{</span>text_manager<span class="sc">.</span>message_count()<span class="sc">}</span><span class="ss">, and there are </span><span class="sc">{</span><span class="bu">len</span>(text_manager.get_unread_messages())<span class="sc">}</span><span class="ss"> unread messages.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The number of total messages in the inbox is 13, and there are 6 unread messages.</code></pre>
+</div>
+</div>
+</section>
+<section id="e" class="level3">
+<h3 class="anchored" data-anchor-id="e">e)</h3>
+<p>Count the unread messages again and see if the method returns the same output as Part d.&nbsp;Why or why not is it returning the same output? <strong>(3 points)</strong></p>
+<div id="81e5d39c-e43a-424e-9d0d-f4b56f987c52" class="cell" data-execution_count="70">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'There are </span><span class="sc">{</span><span class="bu">len</span>(text_manager.get_unread_messages())<span class="sc">}</span><span class="ss"> unread messages.'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This does not return the same output as we ran get_unread_messages() in the previous block, which itself marks each unread message as read.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>There are 0 unread messages.</code></pre>
+</div>
+</div>
+</section>
+<section id="f" class="level3">
+<h3 class="anchored" data-anchor-id="f">f)</h3>
+<p>Clear the inbox and count all messages again. <strong>(2 points)</strong></p>
+<div id="e3bf1d0c-f5f8-4827-b706-9f3f186ff04c" class="cell" data-execution_count="71">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>text_manager.clear_inbox()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The number of total messages in the inbox is </span><span class="sc">{</span>text_manager<span class="sc">.</span>message_count()<span class="sc">}</span><span class="ss">.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The number of total messages in the inbox is 0.</code></pre>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
