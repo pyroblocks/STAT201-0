@@ -1,0 +1,121 @@
+---
+title: "Assignment 5 - R Data Structures"
+
+#format:
+#html:
+toc: true
+self-contained: true
+link-external-newwindow: true
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Instructions
+
+1.  You need to submit the assignment as an HTML file, which should be created by **rendering** this qmd file, as demonstrated in the lectures. **(2 points)**
+2.  Do not include your name anywhere in the assignment. Assignments are graded anonymously. **(1 point)**
+3.  Write your code as organized as possible:
+
+-   There should not be any excessively long outputs (e.g. printing unnecessary results without good reason, printing something unnecessary inside a loop, etc.). There should not be any piece of unnecessary code (running or commented out) or unnecessary text. **(1 point)**
+-   The code should be commented and clearly written with intuitive variable names. **(1 point)** Also keep in mind that graders cannot give any partial credit to code they cannot follow.
+
+## 1) Streaming Platforms (55 Points)
+
+The main purpose of this question is to familiarize you with R atomic vectors and many functions (built-in or user-defined) that use atomic vectors as inputs to implement various tasks. The best way to approach each of the following parts would be to think about which operation(s) you need and look up (or create) an R function that implements it. Note that you will never need to memorize function names and usage in any language as a programmer; you can always look up what you need.
+
+The streaming platforms used by two different groups of NU students are given below as two atomic vectors. Note that students use a differing number of platforms, but all platform names (corresponding to the same student) are separated with a **semicolon**.
+
+```{r}
+streaming_platform_group1=c('Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'HBO Max;Disney+;Paramount Plus;Peacock', 'Netflix', 'Netflix;Hulu;Disney+', 'Netflix;Amazon Prime;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu', 'None', 'Amazon Prime', 'Netflix;Hulu;Amazon Prime', 'Amazon Prime', 'Netflix', 'Netflix', 'Netflix', 'none', 'Netflix;Amazon Prime', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Hulu;HBO Max', 'Netflix;Disney+', 'Netflix', 'Netflix;HBO Max', 'Netflix;Hulu', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Netflix;Disney+', 'Netflix;Disney+', 'Netflix;HBO Max;Disney+', 'Netflix', 'Netflix;Amazon Prime', 'Netflix;Disney+', 'HBO Max;Disney+', 'Netflix;Amazon Prime', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+;Shudder;Apple TV+', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime', 'Hulu;Amazon Prime', 'Netflix;Hulu', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu', 'Netflix;Hulu;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime', 'Netflix;Hulu;Amazon Prime', 'Netflix;Amazon Prime', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Amazon Prime;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime', 'Netflix;Hulu;HBO Max', 'Netflix', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;Amazon Prime', 'Netflix', 'Disney+', 'Netflix;Amazon Prime;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+;Peacock;Paramount+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Amazon Prime', 'Netflix;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix', 'Netflix;Amazon Prime;HBO Max', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix', 'Netflix;Amazon Prime;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;Disney+', 'Amazon Prime;Disney+', 'Netflix;Amazon Prime', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max', 'ESPN+;Peacock;Paramount+', 'Netflix', 'Netflix;Hulu;Amazon Prime;Disney+', 'None', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Amazon Prime;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Youtube', 'Netflix;Amazon Prime;HBO Max', 'Amazon Prime', 'Hulu', 'Netflix;Amazon Prime;Disney+', 'Netflix;Amazon Prime', 'Netflix;HBO Max', 'Netflix;HBO Max;Disney+', 'Netflix;HBO Max', 'Disney+', 'Netflix;Hulu;HBO Max', 'Netflix', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Amazon Prime', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;Amazon Prime', 'Netflix;Hulu;HBO Max;Disney+', 'none', 'Netflix', 'Netflix;Hulu', 'Netflix;Hulu', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix', 'Netflix;HBO Max', 'Netflix', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Amazon Prime;HBO Max', 'Netflix', 'Netflix;Hulu;HBO Max', 'Netflix;HBO Max', 'Amazon Prime', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime', 'Hulu;Peacock', 'Amazon Prime', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix')
+```
+
+```{r}
+streaming_platform_group2=c('Netflix;Hulu;Amazon Prime;Disney+', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Amazon Prime;HBO Max', 'Netflix;Hulu', 'Netflix;Hulu', 'Netflix', 'Free Online Sites', 'Netflix;Hulu', 'Netflix;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Disney+', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;HBO Max', 'Netflix;Amazon Prime', 'Netflix;Hulu', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;HBO Max', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix;Amazon Prime;Disney+', 'Netflix;HBO Max', 'Netflix;Hulu;HBO Max', 'Netflix;Disney+', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Disney+', 'Netflix;Hulu;HBO Max', 'Netflix;Amazon Prime', 'Netflix;Disney+', 'Netflix;Hulu;HBO Max', 'Netflix;Hulu;HBO Max;Disney+', 'Netflix;Hulu;Amazon Prime', 'Netflix;Hulu', 'Netflix;Hulu;Amazon Prime;HBO Max;Disney+', 'Netflix;Hulu', 'Netflix;Hulu;Amazon Prime;HBO Max', 'Netflix', 'Animepahe.com ', 'Netflix;Hulu;HBO Max', 'Netflix;Amazon Prime;HBO Max;hotstar')
+
+```
+
+### a) Streaming platforms of all students (4 points)
+
+Concatenate the atomic vectors `streaming_platform_group1` and `streaming_platform_group2` into one atomic vector named `streaming_platforms` that contains the streaming platform data of all students.
+
+### b) Number of unique combinations (4 points)
+
+What is the number of unique streaming platform combinations used by the students?
+
+### c) Most popular combination (6 points)
+
+What is the most popular streaming platform combination? How many students use it?
+
+**Hint:** You need to use a function that counts the occurrence of each element and use another function that finds the maximum value (and its index).
+
+### d) Most popular platform (11 points)
+
+What is the most popular streaming platform? (One platform, not a combination) How many students use it?
+
+**Hint:** you may use strsplit() function and note the format of each element in the vector.
+
+### e) At least 3 platforms (7 points)
+
+How many students use at least three streaming platforms?
+
+**Hint:** Note the format of each element in the vector.
+
+### f) Frequency of a streaming platform (13 points)
+
+Write a user-defined function that takes a streaming platform name and the atomic vector with the student data as two inputs, and returns the number of students using that platform as the output.
+
+Call the function twice to find the number of students using Netflix and the number of students using Hulu.
+
+**Hint:** There are different ways to implement this question. Pick the one that you think is best.
+
+### g) All streaming platforms in the data (10 points)
+
+Print the number of students who watch each streaming platform in the data using the following format:
+
+**`PlatformName` is watched by `NumberOfStudents` students.**
+
+How many students do not use any streaming platforms?
+
+**Hint:** The code from the previous questions should help with this one.
+
+## 2) The Monte Carlo Simulation (40 Points)
+
+The main purpose of this question is to introduce R matrices, their tools, and their advantages while working on numeric data. You can again look up any R function that you think will be necessary. **For reasons that are explained below, you cannot use any loops for this question.**
+
+For basic scenarios, the probability of a certain outcome can be calculated with a formula. For example, the probability of heads when flipping a fair coin is 1/2 and the probability of any number from 1 to 6 when throwing a fair die is 1/6.
+
+Using analytic formulas to calculate the probability of an event has two limitations. First of all, for more complex real-life events, it is difficult, sometimes impossible, to come up with a formula to plug numbers into. Secondly, computers cannot understand probability by analytic formulas; they need numerical methods.
+
+Numerical methods rely on repeated experiments. For example, you could toss a fair coin 100 times, and count how many times it lands on a particular side. Dividing that value by the number of tosses (trials) would give a value around 1/2. The more trials you perform, the more accurate your numerical estimate would be. Likewise, you can roll a fair die 100 times and count how many times it lands on a particular value. Dividing the count for each value by the total number of rolls would give a probability around 1/6 for each value. The more rolls (trials) you perform, the closer you can expect to get to 1/6. This type of simulation to estimate a probability is called **“The Monte Carlo Simulation”**.
+
+Let's use The Monte Carlo Simulation for a real-life probability experiment. Assume you are in a room with P other people and everyone picks a random integer between 1 and an upper limit, L. The task is to find the probability distribution of the number of people who picked the same integer as you. In order to find the probabilities using The Monte Carlo Simulation, you need to simulate this experiment for a large number of times, N, and count different outcomes.
+
+Note that the code you need to implement this experiment needs N numbers from P + 1 people. Especially for larger values, using loops makes the code exponentially slow, which is not ideal. Matrices, on the other hand, enable a much more efficient implementation using parallel computing of their elements. Therefore, **you cannot use a loop to implement the questions below. Any code that includes loops will not get any credit.**
+
+### a)
+
+Assume that there are 10 **other** people in the room **besides you** and everyone picks an integer between 1 and 7 (inclusive). Enter the number of people in the room, the upper limit of the number range and the number of trials as three variables. Use 10,000 trials. **(5 points)**
+
+```{r}
+
+#num_people = 
+#upper_lim = 
+#num_trials =
+
+```
+
+### b)
+
+Using the variables above, calculate the probability distribution of the number of people picking the same integer as you. Print the probabilities either as a vector or as a table. **(25 points)**
+
+**Hints:**
+
+1)  A **random matrix** of **integers** that holds each trial in a row and each person in a column should be helpful.
+2)  You can assume that your integer picks are in the **first column**.
+3)  **Broadcasting** and **logical** operations are other tools that will be helpful.
+4)  Remember that you can take the sum of logical values just like numeric 1s and 0s.
+5)  If you are using more than 10 lines of code, you are probably making a mistake somewhere.
+
+### c)
+
+Use The Monte Carlo Simulation to find the probability of three people in a room of 100 people (**including you**) who have the same birthday as you. Use 100,000 trials. Do not take leap years into account. **(10 points)**
