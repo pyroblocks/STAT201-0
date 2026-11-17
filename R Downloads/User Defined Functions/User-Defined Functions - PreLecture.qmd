@@ -1,0 +1,53 @@
+---
+title: "User Defined Functions"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
+
+# User-Defined Functions
+
+- same difference in the syntax
+  - The first line has ()
+  - The lines of the function body are in {}
+
+## 1) Example 1: No Output Values
+
+```{r}
+odd_even = function(input1) {
+  if(input1%%2 == 0) {
+    print("Even")
+  } else { #actually can have else start a line in a function but don't write it like that bruh
+    print("Odd")
+  }
+}
+```
+
+## 2) Example 2: Output Values
+
+```{r}
+# Same keyword as Python - return 
+
+# Important differences with the return line:
+  # Use () with return
+  # In R, you can return ONLY ONE variable/object as output
+    # What do to if we want to return multiple vars?  
+    # Put them together in an R DATA STRUCTURE and return the structure as one variable
+
+my_func = function(a,b,c) {
+  out1 = a*b^2
+  out2=b-a
+  return (list(out1, out2)) # gotta return one object
+}
+```
+
+- Other than these points/differences, everything else is the same as Python user-defined functions:
+  - Input order and stating input names: my_function(in2=4, in1=5, 6)
+  - Default values: my_function = function(in1, in2, in3=5)
+  - You can create a function without any inputs/outputs
+  - Seeing a return line stops a function from running, so all the lines under that return line would be skipped.
+  - Same idea as Python about global and local variables.
+    - Global vars are seen inside the function body.
+    - Local vars are NOT seen outside the function body.
+    - If a local var has the same name as a global var, it overwrites ONLY inside the function body.

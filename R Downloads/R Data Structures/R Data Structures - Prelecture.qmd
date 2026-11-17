@@ -1,0 +1,528 @@
+---
+title: "R Data Structure"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
+
+# Data Structures
+
+- Remember the difference in mindset:
+  - Python is about versatility - that’s why its go-to structure is a list
+  - R is about efficiency - that’s why its go-to structures are (atomic) vectors and matrices
+  - tuples and sets are available through libraries in R.
+  - vectors and matrices in Python are available through numpy
+
+## 1) Atomic Vector
+
+- A homogeneous structure- all elements in it should either be numeric or character or boolean (not mixed)
+
+### a) Creating
+
+```{r}
+
+#Three different ways to create
+
+# 1st method - : notation
+
+vec1 <- 1:10
+vec2 <- 15:10 # generates backwards
+print(vec1)
+print(vec2)
+```
+
+```{r}
+# Method 2 
+# seq function (also to add stepsizes)
+
+vec3 <- seq (20,30,4) # start (inc), end (inc), step
+print(vec3)
+```
+
+```{r}
+# Method 3 using c function
+
+vec4 = c(12,3,4,5,6) # just do whatever
+```
+
+```{r}
+# What happens when I put numbers and character together?
+veccomb = c(1,2,3,4,"Hi") # they all become char
+print(veccomb)
+
+# If any char is present in the vector, all items become char ("TRUE" and "FALSE")
+# Otherwise, if any number is present in the vector, all items become numeric ("TRUE" becomes 1, "FALSE" becomes 0)
+# Only logicals means that TRUE and FALSE may be in the vector
+```
+
+### b) Indexing
+
+```{r}
+# In R indexing starts from 1 unlike Python where it starts from 0
+# are we deadass
+
+my_vec = c(1:5, 12, 7, seq(1,5,2), 3,8,9)
+print(my_vec)
+print(my_vec[1])
+print(my_vec[6])
+print(my_vec[5:8]) # ALL INCLUSIVE
+print(my_vec[seq(3,11,3)]) # go bananas
+```
+
+```{r}
+# All the main R data structures are mutable
+# So, we can use the indices to change the elements
+
+my_vec[2] = 100
+print(my_vec)
+
+my_vec[c(4,7)] = "a"
+print(my_vec) # oops! all chars
+```
+
+### c) Adding and Concatenating
+
+```{r}
+# append and c functions
+
+vec1 = c("java", "python")
+vec2 = c("perl", "julia", "fortan")
+
+vec_new = append(vec1, c("R", "a"))
+print(vec_new)
+
+vec_new1 = append(vec1, c("R", "a"), after=1)
+print(vec_new1)
+
+print(c(vec1, vec2))
+```
+
+### d) Removing
+
+```{r}
+
+vec2[-1] # oh. oh dear.
+
+my_vec=seq(1,12)
+print(my_vec[-2]) # where'd it go
+```
+
+### e) Iterating
+
+```{r}
+
+for (elem in my_vec) {
+  print(elem)
+}
+
+for (i in 1:length(my_vec)) {
+  print(my_vec[i])
+}
+```
+
+### f) Using as Function Input
+
+```{r}
+# R has WAY MORE functions than Python without any libraries
+my_vec = seq(1,10)
+```
+
+```{r}
+# Basic functions(works for numeric and logical)
+print(my_vec)
+print(sum(my_vec))
+print(sum(c(TRUE,FALSE,TRUE,TRUE)))
+print(max(my_vec))
+print(min(my_vec))
+print(max(c(1,-1,TRUE,FALSE)))
+print(min(c(1,-1,TRUE,FALSE)))
+
+print(which.max(my_vec)) # index of highest value
+```
+
+```{r}
+# Some basic statistics (Python did not have that)
+# again works for numeric and logical vectors
+
+print(mean(my_vec))
+print(median(my_vec))
+print(sqrt(my_vec)) # vectorized - does it for the whole vector
+```
+
+```{r}
+# A few more important functions
+binary_vec = c(1,0,1,0,0,1,0,1,1,0,1)
+
+vec10 = c(1,0,1,0,0,1,0,1,1,0,1,"a","b","a")
+table1=table(vec10) # counter hashmap
+print(table1)
+typeof(table1)
+
+table1["a"] # HEADERS ALL BECOME CHARS
+table1[1] # 
+
+unname(table1)
+names(table1)
+table1
+
+max(table1)
+which.max(table1) # returns item, positional index
+```
+
+```{r}
+# Element-by-element (vectorized) operation, meaning all numbers are processed IN PARALLEL, as opposed to sequential processing by loops
+```
+
+### g) Arithmetic
+
+```{r}
+# The idea of parallel processing (element-by-element operations) comes back
+
+my_vec
+
+my_vec + 2 #all operations are fall game
+
+my_vec %% 2 == 0 # comparisons too
+
+log_vec = c(TRUE,FALSE,TRUE)
+
+sum(log_vec) # count of true
+typeof(log_vec)
+mean(log_vec) # share of trues
+
+
+# same length means you can do operations elem-by-elem
+vec1 = c(23,4,5,6,8,10)
+vec2 = c(1,2,3,9,1,5)
+
+vec1 + vec2
+vec1 > vec2
+
+
+#not same length - start again
+v1 = c(1,1,1,1,1,1)
+v2 = c(1,2,3,4)
+
+v1+v2
+```
+
+## 2) Matrix
+
+- Matrices are 2-d versions of vectors
+- There will be rows and columns
+- We can create a matrix from a vector
+
+### a) Creating and Indexing
+
+```{r}
+# A matrix formed from vector 1:6
+# If there are m rows and n cols, total number of elements in a matrix will be m*n
+
+my_matrix = matrix(1:6, nrow=3, ncol=2)
+
+my_matrix2 = matrix(1:6, nrow=3) # can imply either rows or cols
+
+my_matrix3 = matrix(1:6, 2, 3) # if not stated, assumes rows, cols
+
+
+vec1 = c(22, 1, 3, 4, 5, 7)
+mat = matrix(vec1, 3, 2) # column-major order
+mat
+
+mat[2,1]
+mat[3,] # if you do not include the comma, it will give you the nth element in the matrix by column-major order
+
+mat[2:3,1:2] # slice that jawn
+
+mat[c(2,1,3),] # you can use seq here too
+```
+
+```{r}
+mat2 = matrix(seq(1,5), 4)
+mat2 # its just gonna keep going
+```
+
+### b) Adding, Concatenating and Removing
+
+```{r}
+# You cannot add/remove a value from a matrix
+  
+# We add/remove columns or rows
+
+new_mat = matrix(seq(1,24,3), 4)
+new_mat
+
+mat_col = cbind(new_mat,1:4) #attaches to last col
+mat_col
+
+#cbind(new_mat, 1:3) # its gonna repeat if it's too short and truncate if it's too long
+
+mat_row = rbind(new_mat, 1:2)
+mat_row
+```
+
+### c) Iterating
+
+```{r}
+# In a matrix, we have rows and cols - 2 dims
+# To explore both dimensions, we need NESTED LOOPS
+
+new_mat
+for (num in new_mat) { #COLUMN-MAJOR ITERATION
+  print(num)
+}
+```
+
+```{r}
+for (i in 1:nrow(new_mat)) {
+  for (j in 1:ncol(new_mat)) {
+    print(new_mat[i,j])
+  }
+}
+```
+
+```{r}
+# First of all, you can use one loop as well
+
+
+```
+
+```{r}
+# For full access to both dims, you need nested loops
+
+```
+
+### d) Using as Function Input
+
+```{r}
+
+new_mat
+
+sqrt(new_mat)
+sum(new_mat)
+median(new_mat)
+sd(new_mat)
+
+rowSums(new_mat)
+```
+
+### e) Arithmetic
+
+```{r}
+# Firstly, arithmetic with a matrix and a number is just like vectors and numbers
+
+new_mat
+
+new_mat %% 2 == 0
+
+new_vec = 1:4
+
+#new_mat+new_vec # ADDED TO EACH COLUMN
+
+new_mat + 1:3 # yup we repeat again BUT NOTE WHERE - IT STILL ITERATES DOWN IN COLUMN-MAJOR ORDER
+
+new_mat + 1:5
+
+new_mat >= new_mat[,2] # column comparison is pretty simple
+```
+
+```{r}
+# to broadcast a vector to each row, you need to create a matrix with the rep function
+
+rep_vec = rep(c(1,2),4) # 1 2 is repeated x4
+
+rep_mat = matrix(rep_vec, 4, byrow=TRUE)
+rep_mat
+
+print(new_mat + rep_mat) # if they're of same size, then all of these operations work
+
+# so, you can add a column vector to each column easily, but you have to first use rep to make a repetition matrix (of the same size as the original matrix) to add a row vector to each row
+
+# ALL MATRIX-MATRIX OPERATIONS REQUIRE MATRICES OF THE SAME SHAPE
+```
+
+```{r}
+rand_vec = rnorm(n=8, mean=0, sd=1) # mean=0 and sd=1 are default
+
+rand_mat = matrix(rand_vec, 4)
+print(rand_mat)
+```
+
+## 3) List
+
+### a) Creating and indexing
+
+```{r}
+# Lists are not very preferred in R
+
+# Let's create one first
+# Just like Python, a R list can be heterogeneous.
+# elements of different type can be together
+
+my_list = list(5, 'chicago', TRUE, list('evanston', 9), c(1,2))
+my_list[[4]][2] # what the fuck is this genuinely
+# single brackets to get a sub-list, double brackets to actually get the element
+```
+
+### b) Adding, Concatenating and Removing
+
+```{r}
+# Exactly the same as vectors
+
+# Concatenate: c function
+
+c(1, my_list, list(1,2)) # brilliant man
+```
+
+```{r}
+my_list = list(1,2,3,4,5)
+# APPEND FOR INSERTION
+append(my_list, 10, after=0) # after means after; you gotta save this as a variable though it returns another list object
+```
+
+### c) Iterating
+
+```{r}
+# Either directly through the values themselves or their index range
+
+for (element in my_list) {
+  print(element)
+}
+
+for (i in 1:length(my_list)) {
+  print(my_list[i])
+}
+# The exact same way as vectors
+```
+
+### d) Using as Function Input
+
+```{r}
+# Most relevant functions don't accept lists as direct inputs
+
+num_list = list(1,2,3,4)
+#sum(num_list) # homelander not very woke of you gif
+
+output = unlist(num_list) # revert to vector
+output
+sum(output)
+```
+
+### e) Arithmetic
+
+```{r}
+# does not work with list
+```
+
+### f) Lists with Names
+
+```{r}
+# Also called Named Lists
+# similar to dict in Python
+
+# Now, each element in the list will have BOTH pos indices AND some name (like a key in a dict)
+
+my_list = list(5,'Chicago',TRUE,list('evanston',FALSE))
+unlisted = unlist(my_list)
+
+names(my_list) = c("integer", "city", "logical", "nested_list")
+
+my_list # oh that's what we're doing
+
+my_list['integer'] # still need the double brackets to get the actual value though idk
+my_list$integer # ok this gets you the raw value
+
+names(my_list$nested_list) = c("location", "log")
+
+print(my_list)
+
+# Add names to it
+```
+
+```{r}
+# You can do this faster than making the list then naming it
+
+my_list2 = list("title"='A',"rating"=2)
+my_list2[1]$title # guess you can do that too
+```
+
+## 4) apply, sapply and lapply
+
+### a) apply
+
+```{r}
+# If we want to use a fun for each row/col of a matrix, we need to use apply
+
+rand_mat = matrix(rnorm(18), 6)
+rand_mat
+
+apply(rand_mat, 1, sd) # for the second arg, 1 for rows, 2 for cols, c(1,2) for both
+```
+
+```{r}
+
+
+#Using this apply function, we can use any function col-by-col or row-by-row 
+```
+
+```{r}
+# A user define function that takes a vector as an input
+# Return the difference between the max and min element of the vector
+
+```
+
+```{r}
+
+
+
+# Two important points about apply:
+  # You can only use apply with matrices (not with a vector/list)
+  # The function you are applying should either aggregate or transform a vector
+    # This is relevant because apply is not for using function, that use element-by-element operations.
+```
+
+### b) sapply and lapply
+
+```{r}
+# sapply is for element by element operation
+# It can take a matrix, a list, a vector
+
+
+```
+
+```{r}
+# lapply is very similar to sapply, the only difference is it always returns a list
+
+
+```
+
+```{r}
+# Wrapping up:
+  # apply: Takes ONLY matrices, returns vectors/matrices (Try a function that returns multiple values for each row/col to get a matrix output)
+  # sapply: Takes matrices, vectors, lists, returns ONLY vectors
+  # lapply: Takes matrices, vectors, lists, returns ONLY lists
+
+```
+
+## 5) Dataframes
+
+- Same with its Python counterpart
+  - It holds tabular data
+    - Each row is an observation/data point
+    - Each column is a variable/ feature/ attribute
+
+```{r}
+# A named list -  with all values as vector
+
+
+# More on 301 sequence
+
+# Note that in R, dataframes are in base R, we did not need a library
+
+
+```
+
+```{r}
+# A tibble is a special version of a dataframe and accessible through the tidyverse library. It has many features that a dataframe does not, which are all STAT 301 content.
+```

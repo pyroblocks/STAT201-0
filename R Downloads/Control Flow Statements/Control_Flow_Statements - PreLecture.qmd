@@ -1,0 +1,38 @@
+# Control Flow Statements
+
+## 1) if-else if-else statements
+
+```{r}
+#if (condition) {
+# xyz
+#} else { [else CANNOT BE THE START OF A NEW LINE]
+# xyz 
+#}
+
+# else if instead of elif
+```
+
+## 2) for loops
+
+```{r}
+# NO range func, use 1:10 or seq()
+# THE LAST NUMBER IS INCLUSIVE!!!!
+
+# range(5) is 0:4
+```
+
+## 3) while loops
+
+```{r}
+x=1
+while (x<5) {
+  print(x)
+  x = x + 1 # cannot use +=
+}
+```
+
+## 4) break and next
+
+```{r}
+#same as python, with next instead of continue
+```

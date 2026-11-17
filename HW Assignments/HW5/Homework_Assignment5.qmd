@@ -16,8 +16,8 @@ editor_options:
 2.  Do not include your name anywhere in the assignment. Assignments are graded anonymously. **(1 point)**
 3.  Write your code as organized as possible:
 
--   There should not be any excessively long outputs (e.g. printing unnecessary results without good reason, printing something unnecessary inside a loop, etc.). There should not be any piece of unnecessary code (running or commented out) or unnecessary text. **(1 point)**
--   The code should be commented and clearly written with intuitive variable names. **(1 point)** Also keep in mind that graders cannot give any partial credit to code they cannot follow.
+- There should not be any excessively long outputs (e.g. printing unnecessary results without good reason, printing something unnecessary inside a loop, etc.). There should not be any piece of unnecessary code (running or commented out) or unnecessary text. **(1 point)**
+- The code should be commented and clearly written with intuitive variable names. **(1 point)** Also keep in mind that graders cannot give any partial credit to code they cannot follow.
 
 ## 1) Streaming Platforms (55 Points)
 
@@ -38,9 +38,17 @@ streaming_platform_group2=c('Netflix;Hulu;Amazon Prime;Disney+', 'Netflix;Amazon
 
 Concatenate the atomic vectors `streaming_platform_group1` and `streaming_platform_group2` into one atomic vector named `streaming_platforms` that contains the streaming platform data of all students.
 
+```{r}
+streaming_platforms = c(streaming_platform_group1,streaming_platform_group2)
+```
+
 ### b) Number of unique combinations (4 points)
 
 What is the number of unique streaming platform combinations used by the students?
+
+```{r}
+print(length(unique(streaming_platforms)))
+```
 
 ### c) Most popular combination (6 points)
 
@@ -48,17 +56,42 @@ What is the most popular streaming platform combination? How many students use i
 
 **Hint:** You need to use a function that counts the occurrence of each element and use another function that finds the maximum value (and its index).
 
+```{r}
+streaming_platforms_table = table(streaming_platforms) # create hashable counter of streaming_platforms
+most_common = names(which.max(streaming_platforms_table))
+most_common_count = streaming_platforms_table[most_common]
+sprintf("The most common combination is %s with a count of %d", most_common, most_common_count)
+```
+
 ### d) Most popular platform (11 points)
 
 What is the most popular streaming platform? (One platform, not a combination) How many students use it?
 
 **Hint:** you may use strsplit() function and note the format of each element in the vector.
 
+```{r}
+streaming_platforms_individual = unlist(strsplit(streaming_platforms,";")) # use strsplit() to create a list of vectors each representing a student's combination of platforms used, then use unlist() to combine the list into a single vector
+streaming_platforms_individual_table = table(streaming_platforms_individual) # create hashable counter of streaming_platforms_individual
+most_common_individual = names(which.max(streaming_platforms_individual_table))
+most_common_individual_count = streaming_platforms_individual_table[most_common_individual]
+print(sprintf("The most popular streaming platform is %s with a count of %d", most_common_individual, most_common_individual_count))
+```
+
 ### e) At least 3 platforms (7 points)
 
 How many students use at least three streaming platforms?
 
 **Hint:** Note the format of each element in the vector.
+
+```{r}
+three_plus <- 0
+for (student in strsplit(streaming_platforms, ";")) { # use strsplit to get list of vectors with each student's combination of platforms
+  if (length(student) >= 3) {
+    three_plus = three_plus+1
+  }
+}
+print(three_plus)
+```
 
 ### f) Frequency of a streaming platform (13 points)
 
@@ -67,6 +100,18 @@ Write a user-defined function that takes a streaming platform name and the atomi
 Call the function twice to find the number of students using Netflix and the number of students using Hulu.
 
 **Hint:** There are different ways to implement this question. Pick the one that you think is best.
+
+```{r}
+count_platform_users = function(platform_name,student_data) {
+  platform_uses = table(unlist(strsplit(student_data,";"))) # create hashable counter of individual streaming platforms
+  return(platform_uses[[platform_name]])
+}
+```
+
+```{r}
+print(count_platform_users("Netflix",streaming_platforms))
+print(count_platform_users("Hulu",streaming_platforms))
+```
 
 ### g) All streaming platforms in the data (10 points)
 
@@ -77,6 +122,16 @@ Print the number of students who watch each streaming platform in the data using
 How many students do not use any streaming platforms?
 
 **Hint:** The code from the previous questions should help with this one.
+
+```{r}
+platforms = unique(streaming_platforms_individual)
+
+for (platform in platforms) {
+  print(sprintf("%s is watched by %d students.",platform, count_platform_users(platform,streaming_platforms))) # for each platform, count users and output
+}
+
+print(sprintf("%d students do not use any streaming platforms", count_platform_users('none',streaming_platforms)+count_platform_users('None',streaming_platforms)))
+```
 
 ## 2) The Monte Carlo Simulation (40 Points)
 
@@ -98,9 +153,9 @@ Assume that there are 10 **other** people in the room **besides you** and everyo
 
 ```{r}
 
-#num_people = 
-#upper_lim = 
-#num_trials =
+num_people = 11 # 10 others, then me
+upper_lim = 7
+num_trials = 10000
 
 ```
 
@@ -116,6 +171,33 @@ Using the variables above, calculate the probability distribution of the number 
 4)  Remember that you can take the sum of logical values just like numeric 1s and 0s.
 5)  If you are using more than 10 lines of code, you are probably making a mistake somewhere.
 
+```{r}
+sim_matrix = matrix(replicate(num_trials,sample(1:upper_lim,num_people,replace=TRUE)),num_people) # use replicate and sample to generate 110,000 (num_people*num_trials) random numbers from 1:7 (1:upper_lim), divided into 10,000 (num_trials) columns of 11 (num_people)
+
+# assume that we are in row 1 ([1,])
+broadcast_matrix = matrix(rep(sim_matrix[1,],num_people), num_people, byrow=TRUE) # create a repeated matrix of just my (row 1's) number for each simulation
+
+matching_matrix = (sim_matrix == broadcast_matrix)[-1,] #start from index 2 so we don't count ourselves
+
+simulation_results = colMeans(matching_matrix) # vector of proportion of other people in the room that share my integer pick across the 10,000 simulations
+
+results_table = table(simulation_results)
+print(results_table)
+```
+
 ### c)
 
 Use The Monte Carlo Simulation to find the probability of three people in a room of 100 people (**including you**) who have the same birthday as you. Use 100,000 trials. Do not take leap years into account. **(10 points)**
+
+```{r}
+num_people = 100
+upper_lim = 365
+num_trials = 100000
+
+sim_matrix = matrix(replicate(num_trials,sample(1:upper_lim,num_people,replace=TRUE)),num_people)
+broadcast_matrix = matrix(rep(sim_matrix[1,],num_people), num_people, byrow=TRUE)
+matching_matrix = (sim_matrix == broadcast_matrix)[-1,]
+simulation_results = colMeans(matching_matrix)
+results_table = table(simulation_results)
+print(results_table[[4]]/num_trials) # exactly three matches will be the fourth element in the table, given that exactly 0, 1, and 2 matches will be the first three
+```

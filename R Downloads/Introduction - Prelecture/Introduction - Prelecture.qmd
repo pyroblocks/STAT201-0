@@ -1,0 +1,109 @@
+# Introduction
+
+## 0) Assignment Syntax
+
+```{r}
+# R code here
+a <- 5 # traditional way of assignment
+print(a)
+```
+
+## 1) Variables and Datatypes
+
+### a) Four Basic Datatypes
+
+```{r}
+my_int = 2L # L to specify integer
+my_double = 2.5 # double, or numeric
+my_char = "Hi" # character
+my_logical = TRUE # all caps TRUE or FALSE for logical
+
+# check datatype with typeof
+
+typeof(my_char)
+typeof(my_double)
+```
+
+### b) Variable Names
+
+- A variable name must start with a letter and can be a combination of letters, digits, period(.) and underscore(\_). If it starts with period(.), it cannot be followed by a digit.
+- A variable name cannot start with a number or underscore (\_)
+- Variable names are case-sensitive (age, Age and AGE are three different variables)
+- Reserved words cannot be used as variables (TRUE, FALSE, NULL, if…)
+
+## 2) Print and Input Statements
+
+```{r}
+print(paste("My character value is", my_char))
+print(paste0("My character value is", my_char))
+```
+
+```{r}
+# sprintf function takes placeholder %d, %s, %i, etc.
+# %d and %f for numerics
+# %s for characters
+
+sprintf("My character value is %s and my integer is %d", my_char, my_int)
+```
+
+## 3) Conversion, Arithmetic and Logical Operations
+
+### a) Conversion
+
+```{r}
+c = '7' #char
+a = as.integer(c)
+print(a)
+
+as.logical(10)
+as.logical(0)
+as.logical(0.0)
+as.logical("HI") # DOESNT WORK
+```
+
+### b) Arithmetic
+
+```{r}
+# +, -, *, /
+
+# exponentiation is ^
+# modula is %%
+```
+
+### c) Logical
+
+```{r}
+# < and >
+
+# & (AND), | (OR), ! (NOT)
+```
+
+## 4) Built-in Functions
+
+- The idea is the same as Python
+
+- The syntax is the same: Function name, the inputs inside parantheses etc.
+
+- A conceptual comparison between Python and R usage:
+
+- Python is a general-purpose language:
+
+  - Can be used for any task
+  - The toolbox of functions in base Python is very limited
+  - You import/install libraries for access to the functions
+
+- R has stats/numeric operations as its main focus:
+
+  - It has a way more extensive set of functions in base R.
+  - Everything is implemented through functions.
+  - R DOES NOT HAVE ANY METHODS AND ATTRIBUTES!
+  - It still has many libraries for many different tasks, none will be used in this course.
+
+## 5) Errors
+
+- Same as Python, there are syntax, runtime, semantic errors.
+
+## 6) Last Note
+
+- RStudio is a more user-friendly environment than Jupyter.
+- R functions avoid throwing errors as much as possible. That means you can encounter more semantic errors than you did in Python.

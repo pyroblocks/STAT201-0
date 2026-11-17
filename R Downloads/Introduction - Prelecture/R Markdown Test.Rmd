@@ -1,0 +1,16 @@
+---
+title: "Test R Markdown"
+output: html_document
+date: "2026-11-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is just a text line
+
+```{r}
+a = 2+2
+print(a)
+```
